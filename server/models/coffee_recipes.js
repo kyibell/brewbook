@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const { Sequelize } = require('.');
 module.exports = (sequelize, DataTypes) => {
   class Coffee_Recipes extends Model {
     /**
@@ -14,18 +15,65 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Coffee_Recipes.init({
-    recipe_id: DataTypes.INTEGER,
-    name: DataTypes.STRING,
-    ingredients: DataTypes.TEXT,
-    instructions: DataTypes.TEXT,
-    imageUrl: DataTypes.STRING,
-    coffeeTags: DataTypes.ARRAY,
-    servings: DataTypes.INTEGER,
-    prepTime: DataTypes.INTEGER,
-    rating: DataTypes.FLOAT,
-    author_id: DataTypes.INTEGER,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
+    recipe_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true
+    },
+
+    name: { 
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+
+    ingredients: { 
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+
+    instructions: { 
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+
+    imageUrl: { 
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+
+    coffeeTags: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: true
+    },
+    servings: { 
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    prepTime: { 
+      type: DataTypes.INTEGER,
+    },
+    rating: { 
+      type: DataTypes.FLOAT,
+      allowNull: false,
+      defaultValue: 0
+    },
+    author_id:{ 
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'User',
+        key: 'user_id'
+      }
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      defaultValue: Sequelize.NOW 
+    },
+    updatedAt:{
+      type: DataTypes.DATE,
+      defaultValue: Sequelize.NOW
+    }
   }, {
     sequelize,
     modelName: 'Coffee_Recipes',
