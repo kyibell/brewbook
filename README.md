@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+# BrewBook: Your Personalized Coffee Recipe Book ☕
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to Brewbook a web application designed for coffee and beverage enthusiasts to share, discover, and customize drink recipes. BrewBook offers a wide variety of beverages ranging from coffee, tea, boba, energy drinks, and seasonal refreshers. Tired of spending money at the drive-thru? Brewbook is the place for you! Learn how to make your favorite drink recipes from the comfort of your own home!
 
-## Available Scripts
+__**NOTE: This project is a work in progress! I will keep the README updated as I progress through the project!**__
 
-In the project directory, you can run:
+## About
 
-### `npm start`
+BrewBook is your go-to recipe book for crafting delicious drinks at home. Whether you're recreating your favorite café recipe or experimenting with new combinations, BrewBook lets you manage and rate recipes, compare ingredient prices, and find personalized recommendations.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Key Features (Coming Soon!)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+-**User Authentication:** Create a secure login, including integration with google.
+-**Recipe Management:** Create, edit, update, and delete recipes with details instructions and ingredient lists.
+-**User Ratings:** Users can rate the recipe based on authenticity and how close it is to the real thing.
+-**Recipe Tags:** Recipes can contain certain tags so users can search for what they like, or even try something new!
+-**Commenting System:** Users can comment below recipes about whatever they liked about it, what they could maybe improve, or even their thoughts on the recipe!
 
-### `npm test`
+# Future Implementations
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-**Grocery Store Ingredients:** This can show the user what they need to buy in order to make the recipe to it's fullest from their local grocery store or Amazon!
+-**Pairing System:** Users can get recommended drinks that go with their favorite pastries or foods!
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
