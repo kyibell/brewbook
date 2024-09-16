@@ -1,6 +1,6 @@
 # BrewBook: Your Personalized Coffee Recipe Book ☕
 
-Welcome to Brewbook a web application designed for coffee and beverage enthusiasts to share, discover, and customize drink recipes. BrewBook offers various beverages ranging from coffee, tea, boba, energy drinks, and seasonal refreshers. Are you tired of spending money at the drive-thru? Brewbook is the place for you! Learn how to make your favorite drink recipes from the comfort of your own home!
+Welcome to Brewbook, a web application designed for coffee and beverage enthusiasts to share, discover, and customize drink recipes. BrewBook offers various beverages ranging from coffee, tea, boba, energy drinks, and seasonal refreshers. Are you tired of spending money at the drive-thru? Brewbook is the place for you! Learn how to make your favorite drink recipes from the comfort of your own home!
 
 __**NOTE: This project is a work in progress! I will keep the README updated as I progress through the project!**__
 
