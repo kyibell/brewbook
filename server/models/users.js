@@ -13,13 +13,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       //define associations here
+      User.hasMany(models.CoffeeRecipes, {
+        foreignKey: 'user_id',
+        as: 'recipes',
+        onDelete: 'CASCADE',
+      });
     }
   }
   User.init({
     user_id: { 
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
+      allowNull: false
     },
     username: {
     type: DataTypes.STRING, 
