@@ -26,7 +26,7 @@ module.exports = {
         allowNull: true
       },
       coffeeTags: {
-        type: Sequelize.ARRAY(DataTypes.STRING),
+        type: Sequelize.ARRAY(Sequelize.STRING),
         allowNull: true
       },
       servings: {

@@ -1,8 +1,7 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+import { Model } from 'sequelize';
+import { Sequelize } from '.'
+export default (sequelize, DataTypes) => {
   class Comment extends Model {
     /**
      * Helper method for defining associations.
@@ -24,17 +23,16 @@ module.exports = (sequelize, DataTypes) => {
   }
   Comment.init({
     postId: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       primaryKey: true,
-      autoIncrement: true,
-      primaryKey: true
+      autoIncrement: true
     },
     comment: {
-      type: DataTypes.TEXT,
+      type: Sequelize.TEXT,
       allowNull: false
     },
     userId: { 
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull: false,
       references: {
         model: 'User',
@@ -43,8 +41,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     createdAt: {
       allownull: false,
-      type: sequelize.DATE,
-      defaultValue: sequelize.NOW
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.NOW
     }
   }, {
     sequelize,

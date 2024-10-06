@@ -1,9 +1,7 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-const { Sequelize } = require('.');
-module.exports = (sequelize, DataTypes) => {
+import { Model } from 'sequelize';
+import { Sequelize } from '.';
+export default (sequelize, DataTypes) => {
   class Coffee_Recipes extends Model {
     /**
      * Helper method for defining associations.
@@ -26,50 +24,51 @@ module.exports = (sequelize, DataTypes) => {
   }
   Coffee_Recipes.init({
     recipe_id: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true
     },
 
     name: { 
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: false
+    
     },
 
     ingredients: { 
-      type: DataTypes.TEXT,
+      type: Sequelize.TEXT,
       allowNull: false
     },
 
     instructions: { 
-      type: DataTypes.TEXT,
+      type: Sequelize.TEXT,
       allowNull: false
     },
 
     imageUrl: { 
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: true
     },
 
     coffeeTags: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: Sequelize.ARRAY(Sequelize.STRING),
       allowNull: true
     },
     servings: { 
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull: false
     },
     prepTime: { 
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
     },
     rating: { 
-      type: DataTypes.FLOAT,
+      type: Sequelize.FLOAT,
       allowNull: false,
       defaultValue: 0
     },
     author_id:{ 
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull: false,
       references: {
         model: 'User',
@@ -77,11 +76,11 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     createdAt: {
-      type: DataTypes.DATE,
+      type: Sequelize.DATE,
       defaultValue: Sequelize.NOW 
     },
     updatedAt:{
-      type: DataTypes.DATE,
+      type: Sequelize.DATE,
       defaultValue: Sequelize.NOW
     }
   }, {

@@ -1,10 +1,8 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-const { Sequelize } = require('.');
-const { toDefaultValue } = require('sequelize/lib/utils');
-module.exports = (sequelize, DataTypes) => {
+import { Model } from 'sequelize';
+import { Sequelize } from '.';
+import { toDefaultValue } from 'sequelize/lib/utils';
+export default (sequelize, DataTypes) => {
   class User extends Model {
     /**
      * Helper method for defining associations.
@@ -23,37 +21,47 @@ module.exports = (sequelize, DataTypes) => {
         as: 'comments',
         onDelete: 'CASCADE',
       });
-    }
+    } 
   }
   User.init({
     user_id: { 
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false
     },
     username: {
-    type: DataTypes.STRING, 
-    allowNull: false
+    type: Sequelize.STRING, 
+    allowNull: false,
+    validate: {
+      len: [6,23] // len 6 => x >= 23 
+    }
   },
     email: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: Sequelize.STRING,
+      allowNull: false,
+      isEmail: true,
+      validate: {
+        isEmail: true
+      }
     },
     password: { 
-      type: DataTypes.STRING,
-      allowNull: false
+      type: Sequelize.STRING,
+      allowNull: false,
+      validate: {
+        len: [6,23]
+      }
     },
     profile_picture_url: { 
-     type: DataTypes.STRING,
+     type: Sequelize.STRING,
      allowNull: true
     },
     bio: { 
-      type: DataTypes.TEXT,
+      type: Sequelize.TEXT,
       allowNull: true
     },
     createdAt:{ 
-      type: DataTypes.DATE,
+      type: Sequelize.DATE,
       defaultValue: Sequelize.NOW
     }
   }, {
