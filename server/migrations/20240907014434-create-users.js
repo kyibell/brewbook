@@ -22,9 +22,6 @@ export async function up(queryInterface, Sequelize) {
     password: {
       type: Sequelize.STRING,
       allowNull: false,
-      validator: {
-        length: [6,23]
-      }
     },
     profile_picture_url: {
       type: Sequelize.STRING,

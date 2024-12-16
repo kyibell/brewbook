@@ -25,7 +25,7 @@ export default (sequelize, DataTypes) => {
   }
   User.init({
     user_id: { 
-      type: Sequelize.INTEGER,
+      type: Sequelize.UUID,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false
@@ -33,9 +33,6 @@ export default (sequelize, DataTypes) => {
     username: {
     type: Sequelize.STRING, 
     allowNull: false,
-    validate: {
-      len: [6,23] // len 6 => x >= 23 
-    }
   },
     email: {
       type: Sequelize.STRING,

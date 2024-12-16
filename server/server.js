@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended: false}));
 const port = 6543;
 
 sequelize.authenticate().then(() => {
-    app.listen(port, () => console.log('Database connected successfully and app listening on port 3000'))
+    app.listen(port, () => console.log(`Database connected successfully and app listening on port 3000`))
 })
 
 .catch((error)=>{
