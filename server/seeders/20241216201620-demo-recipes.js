@@ -4,10 +4,10 @@ import { QueryTypes } from 'sequelize';
 /** @type {import('sequelize-cli').Migration} */
 export async function up(queryInterface, Sequelize) {
 
-  const user = await queryInterface.Sequelize.query(
+  const users = await queryInterface.Sequelize.query(
     'SELECT user_id FROM "Users";',
     { type: QueryTypes.SELECT, 
-    });
+    }); // Get the Foreign ID (User ID) from selection query
 
     await queryInterface.bulkInsert('Coffee_Recipes', [{
         name: 'Iced Vanilla Latte',
@@ -18,7 +18,7 @@ export async function up(queryInterface, Sequelize) {
         servings: 1,
         prepTime: 5,
         rating: 0,
-        author_id: user[0].user_id,
+        author_id: users[0].user_id, // Dynamically call the user id for the recipe
         createdAt: new Date(),
         updatedAt: new Date()
     }
@@ -26,6 +26,5 @@ export async function up(queryInterface, Sequelize) {
 };
 
 export async function down(queryInterface, Sequelize) {
-  
   return queryInterface.bulkDelete('Coffee_Recipes', null, {});
-};
+}; 
