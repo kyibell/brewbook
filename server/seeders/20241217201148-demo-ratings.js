@@ -4,13 +4,13 @@ import { QueryTypes } from 'sequelize';
 /** @type {import('sequelize-cli').Migration} */
 export async function up(queryInterface, Sequelize) {
   const recipes = await queryInterface.sequelize.query(
-    'SELECT recipe_id FROM "Recipes";',
+    'SELECT recipe_id FROM "Coffee_Recipes";',
     { type: QueryTypes.SELECT,  
     });
 
 
   const users = await queryInterface.sequelize.query(
-    'SELECT user_id FROM "Users";',
+    'SELECT user_id FROM "User";',
     { type: QueryTypes.SELECT, 
     });
 

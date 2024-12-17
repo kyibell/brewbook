@@ -2,7 +2,7 @@
 import bcrypt from 'bcrypt'; // Import bcrypt for password hashing
 /** @type {import('sequelize-cli').Migration} */
 export async function up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('Users', [
+    await queryInterface.bulkInsert('User', [
       {
       username: 'John Doe',
       email: 'JohnDoe@demo.com',
@@ -22,5 +22,5 @@ export async function up(queryInterface, Sequelize) {
 };
 
 export async function down(queryInterface, Sequelize) {
-  return queryInterface.bulkDelete('Users', null, {});
+  return queryInterface.bulkDelete('User', null, {});
 };

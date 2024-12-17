@@ -4,8 +4,8 @@ import { QueryTypes } from 'sequelize';
 /** @type {import('sequelize-cli').Migration} */
 export async function up(queryInterface, Sequelize) {
 
-  const users = await queryInterface.Sequelize.query(
-    'SELECT user_id FROM "Users";',
+  const users = await queryInterface.sequelize.query(
+    'SELECT user_id FROM "User";',
     { type: QueryTypes.SELECT, 
     }); // Get the Foreign ID (User ID) from selection query
 
