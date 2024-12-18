@@ -33,6 +33,7 @@ export default (sequelize, DataTypes) => {
     username: {
     type: Sequelize.STRING, 
     allowNull: false,
+    unique: true
   },
     email: {
       type: Sequelize.STRING,
@@ -40,7 +41,8 @@ export default (sequelize, DataTypes) => {
       isEmail: true,
       validate: {
         isEmail: true
-      }
+      },
+      unique: true
     },
     password: { 
       type: Sequelize.STRING,

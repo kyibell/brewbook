@@ -10,14 +10,16 @@ export async function up(queryInterface, Sequelize) {
     },
     username: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     email: {
       type: Sequelize.STRING,
       allowNull: false,
       validator: {
         isEmail: true
-      }
+      },
+      unique: true
     },
     password: {
       type: Sequelize.STRING,
