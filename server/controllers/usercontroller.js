@@ -21,7 +21,7 @@ export const getAllUsers = async (req, res) => {
 
 export const updateUser = async (req, res) => {
     try {
-        const updatedUser = await User.update(req.body, {where: { user_id: req.paramas.id} });
+        const updatedUser = await User.update(req.body, {where: { user_id: req.params.id} });
         res.status(200).json(updatedUser);
     } catch(error) {
         res.status(500).json({error: "Failed to update User."});
@@ -30,7 +30,7 @@ export const updateUser = async (req, res) => {
 
 export const deleteUser = async(req, res) => {
      try {
-         await User.destroy(req.body, {where: { user_id: req.paramas.id }});
+         await User.destroy(req.body, {where: { user_id: req.params.id }});
          res.status(202).send();
      } catch(error) {
         res.status(500).json({error: "Failed to delete User."});
