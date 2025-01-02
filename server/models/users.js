@@ -2,6 +2,9 @@
 import { Model } from 'sequelize';
 import { Sequelize } from '.';
 import { toDefaultValue } from 'sequelize/lib/utils';
+import bcrypt, { compare } from 'bcrypt';
+import { useReducer } from 'react';
+
 export default (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -22,7 +25,11 @@ export default (sequelize, DataTypes) => {
         onDelete: 'CASCADE',
       });
     } 
+    async comparePassword(tryPassword) {
+      return await bcrypt.compare(tryPassword, this.dataValues.password); // Added for Authorization Later
+    }
   }
+  
   User.init({
     user_id: { 
       type: Sequelize.UUID,
@@ -68,5 +75,17 @@ export default (sequelize, DataTypes) => {
     modelName: 'User',
     tableName: 'Users'
   });
+
+  User.beforeSave(async (user, options) => {
+    if (!user.changed('password')) return
+    
+    try {
+      const hash = await bcrypt.hash(user.dataValues.password, saltRounds)
+      user.password = hash;
+    } catch (error) {
+      console.error(error);
+    }
+  });
+  
   return User;
 };
