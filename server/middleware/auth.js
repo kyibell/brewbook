@@ -1,4 +1,4 @@
-import jwt, { JsonWebTokenError } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import * as dotenv from 'dotenv';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -10,7 +10,7 @@ dotenv.config({path: `${__dirname}/../../.env`}); // For Secrets, dotenv config
 
 const SECRET = process.env.JWT_SECRET
 
-const decodeUserFromToken = (req, res, next) => {
+export const decodeUserFromToken = (req, res, next) => {
     let token = req.get('Authorization') || req.query.token || req.body.token // Store token in a variable to fetch the token
     if (!token) return next() // if token wasn't found, doesn't go on with the rest of the function
 
@@ -23,6 +23,6 @@ const decodeUserFromToken = (req, res, next) => {
     })
 }
 
-function checkAuth(req, res, next) {
+export function checkAuth(req, res, next) {
     return req.user ? next() : res.status(401).json({msg: 'Not Authorized'}) // Check if the user object exists, else send a msg for not authorized.
 }

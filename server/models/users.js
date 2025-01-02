@@ -1,9 +1,7 @@
 'use strict';
-import { Model } from 'sequelize';
-import { Sequelize } from '.';
-import { toDefaultValue } from 'sequelize/lib/utils';
-import bcrypt, { compare } from 'bcrypt';
-import { useReducer } from 'react';
+import { Model, Sequelize, DataTypes } from 'sequelize'; // Combine imports
+import bcrypt from 'bcrypt'; // Remove unused destructured `compare`
+
 
 export default (sequelize, DataTypes) => {
   class User extends Model {
@@ -26,24 +24,24 @@ export default (sequelize, DataTypes) => {
       });
     } 
     async comparePassword(tryPassword) {
-      return await bcrypt.compare(tryPassword, this.dataValues.password); // Added for Authorization Later
+      return await bcrypt.compare(tryPassword, this.password); // Added for Authorization Later
     }
   }
   
   User.init({
     user_id: { 
-      type: Sequelize.UUID,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false
     },
     username: {
-    type: Sequelize.STRING, 
+    type: DataTypes.STRING, 
     allowNull: false,
     unique: true
   },
     email: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       isEmail: true,
       validate: {
@@ -52,22 +50,22 @@ export default (sequelize, DataTypes) => {
       unique: true
     },
     password: { 
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [6,23]
       }
     },
     profile_picture_url: { 
-     type: Sequelize.STRING,
+     type: DataTypes.STRING,
      allowNull: true
     },
     bio: { 
-      type: Sequelize.TEXT,
+      type: DataTypes.TEXT,
       allowNull: true
     },
     createdAt:{ 
-      type: Sequelize.DATE,
+      type: DataTypes.DATE,
       defaultValue: Sequelize.NOW
     }
   }, {
