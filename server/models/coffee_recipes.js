@@ -1,6 +1,6 @@
 'use strict';
 import { Model } from 'sequelize';
-import { Sequelize } from '.';
+import { Sequelize } from 'sequelize';
 export default (sequelize, DataTypes) => {
   class Coffee_Recipes extends Model {
     /**

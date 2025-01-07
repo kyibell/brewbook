@@ -1,11 +1,12 @@
-import  User  from '../models/users.js'; // Sample Model Import
+import db from '../models/index.js'; // Sample Model Import
 
 export const getAllUsers = async (req, res) => {
     try {
-        const Users = await User.findAll({});
-        return res.status(200).json(Users);
+        const User = await db.User.findAll({});
+        return res.status(200).json(User);
     } catch(error) {
         res.status(500).json({error: "Failed to get all Users"});
+        console.log(error);
     }
 };
 

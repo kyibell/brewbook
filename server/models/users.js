@@ -12,7 +12,7 @@ export default (sequelize, DataTypes) => {
      */
     static associate(models) {
       //define associations here
-      User.hasMany(models.CoffeeRecipes, {
+      User.hasMany(models.Coffee_Recipes, {
         foreignKey: 'user_id',
         as: 'recipes',
         onDelete: 'CASCADE',
@@ -66,12 +66,15 @@ export default (sequelize, DataTypes) => {
     },
     createdAt:{ 
       type: DataTypes.DATE,
-      defaultValue: Sequelize.NOW
+      defaultValue: Sequelize.NOW,
     }
   }, {
     sequelize,
     modelName: 'User',
-    tableName: 'Users'
+    tableName: 'User',
+    timestamps: true,
+    createdAt: 'createdAt',
+    updatedAt: false,
   });
 
   User.beforeSave(async (user, options) => {

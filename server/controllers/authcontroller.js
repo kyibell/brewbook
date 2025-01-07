@@ -98,10 +98,10 @@ export async function changePassword(req, res) {
         const isMatch = bcrypt.compare(req.body.curPassword);
 
         if (!isMatch) {
-            return res.status(400).json({ message: "Invalid Password."});
+            return res.status(400).json({ message: "Invalid Password Entered."});
         }
 
-        user.password = req.body.newPasswordl
+        user.password = req.body.newPassword;
 
         await user.save();
 

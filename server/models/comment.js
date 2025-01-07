@@ -1,6 +1,5 @@
 'use strict';
 import { Model } from 'sequelize';
-import { Sequelize } from '.'
 export default (sequelize, DataTypes) => {
   class Comment extends Model {
     /**
@@ -17,22 +16,23 @@ export default (sequelize, DataTypes) => {
       
       Comment.belongsTo(models.Coffee_Recipes, {
         foreignKey: 'postId',
-        as: 'comment'
+        as: 'Comment'
       });
     }
   }
+  
   Comment.init({
     postId: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
     comment: {
-      type: Sequelize.TEXT,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     userId: { 
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'User',
@@ -41,12 +41,13 @@ export default (sequelize, DataTypes) => {
     },
     createdAt: {
       allownull: false,
-      type: Sequelize.DATE,
-      defaultValue: Sequelize.NOW
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW
     }
   }, {
     sequelize,
     modelName: 'Comment',
+    tableName: 'Comments'
   });
   return Comment;
 };

@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 import cors from "cors"; // cors
 import sequelize from "./config/database.js";
 import authrouter from "./routes/authrouter.js";
-
+import userrouter from "./routes/userouter.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -23,6 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // Routes
 app.use('/api/auth', authrouter);
+app.use('/api/user', userrouter);
 
 const port = process.env.DB_PORT;
 

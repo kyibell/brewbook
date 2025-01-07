@@ -49,6 +49,7 @@
   },
   "type": "module",
   "devDependencies": {
+    "nodemon": "^3.1.9",
     "supabase": "^1.223.10"
   }
 }

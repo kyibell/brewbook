@@ -1,5 +1,5 @@
 'use strict';
-import { Model, Sequelize } from 'sequelize';
+import { Model } from 'sequelize';
 export default (sequelize, DataTypes) => {
   class Ratings extends Model {
     /**
@@ -9,7 +9,7 @@ export default (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Ratings.belongsTo(models.Coffee_Recipies, {
+      Ratings.belongsTo(models.Coffee_Recipes, {
           foreignKey: 'recipe_id',
           as: 'recipe_rating',
           onDelete: 'CASCADE',
@@ -25,13 +25,13 @@ export default (sequelize, DataTypes) => {
   }
   Ratings.init({
     rating_id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false
     },
     rating: {
-       type: Sequelize.FLOAT,
+       type: DataTypes.FLOAT,
        allowNull: true,
        validate: {
         min: 0.0,
@@ -39,7 +39,7 @@ export default (sequelize, DataTypes) => {
        }
     }, 
     user_id: { 
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       references: {
         model: 'User',
         key: 'user_id'
@@ -47,7 +47,7 @@ export default (sequelize, DataTypes) => {
       onDelete: 'CASCADE'
     },
     recipe_id: { 
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       references: {
         model: 'Coffee_Recipes',
         key: 'recipe_id'
@@ -57,6 +57,7 @@ export default (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Ratings',
+    tableName: 'Ratings'
   });
   return Ratings;
 };
