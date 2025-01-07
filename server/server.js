@@ -21,7 +21,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Controllers
+// Routes
 app.use('/api/auth', authrouter);
 
 const port = process.env.DB_PORT;
@@ -38,6 +38,3 @@ sequelize.authenticate().then(() => {
     console.log(error.message);
   });
 
-// app.listen(port, () => {
-//  console.log('Server is running on http://localhost:3000');
-// });

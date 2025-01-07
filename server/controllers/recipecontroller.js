@@ -18,7 +18,7 @@ export const createRecipe = async (req, res) => {
         if (!name || !ingredients || !servings) {
             return res.status(200).json({ message: "Please enter all fields"});
         }
-
+        
         
     } catch (error) {
         
