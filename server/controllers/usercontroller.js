@@ -5,15 +5,15 @@ export const getAllUsers = async (req, res) => {
         const User = await db.User.findAll({});
         return res.status(200).json(User);
     } catch(error) {
-        res.status(500).json({error: "Failed to get all Users"});
-        console.log(error);
+        res.status(500).json({error: "Failed to get all Users, Internal Server Error."});
+      //  console.log(error);
     }
 };
 
 export const getUserById = async (req, res) => {
     try {
         let id = req.params.user_id;
-        let user = await User.findbyPk(id);
+        let user = await db.User.findbyPk(id);
 
         if (!user) {
             return res.status(400).json({message: "No user found."});
@@ -25,13 +25,14 @@ export const getUserById = async (req, res) => {
             });
         }
     } catch (error) {
-        return res.status(500).json({ message: "Internal Server Error"});
+        console.log(error);
+        res.status(500).json({ message: "Internal Server Error, Failed to get User by ID"});
     }
 }
 
 export const updateUser = async (req, res) => {
     try {
-        const updatedUser = await User.update(req.body, {where: { id: req.params.user_id} });
+        const updatedUser = await db.User.update(req.body, {where: { id: req.params.user_id} });
         res.status(200).json(updatedUser);
     } catch(error) {
         res.status(500).json({error: "Failed to update User."});

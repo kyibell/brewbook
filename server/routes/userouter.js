@@ -6,7 +6,7 @@ const router = express.Router();
 
 // Public Routes
 router.get('/getAllUsers', UserCtrl.getAllUsers);
-
+router.get('/getUserbyId/:id', UserCtrl.getUserById);
 
 
 
