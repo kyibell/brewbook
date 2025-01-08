@@ -7,7 +7,7 @@ const router = express.Router();
 // Public Routes
 router.get('/getAllUsers', UserCtrl.getAllUsers);
 router.get('/getUserbyId/:id', UserCtrl.getUserById);
-
+router.patch('/updateUser/:id', UserCtrl.updateUser);
 
 
 export default router;

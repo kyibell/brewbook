@@ -32,10 +32,28 @@ export const getUserById = async (req, res) => {
 
 export const updateUser = async (req, res) => {
     try {
-        const updatedUser = await db.User.update(req.body, {where: { id: req.params.user_id} });
-        res.status(200).json(updatedUser);
+        const { id } = req.params;
+        let user = await db.User.findByPk(id);
+        
+        if (!user) {
+            return res.status(404).json({
+                status: "fail",
+                message: "User not found with given ID."
+            });
+        }
+
+        const updatedUser = await user.update(req.body);
+        
+        return res.status(200).json({
+            success: true,
+            data: {
+                user: updatedUser,
+            }
+        });
+
     } catch(error) {
-        res.status(500).json({error: "Failed to update User."});
+        console.log(error);
+        res.status(500).json({error: "Internal server error, Failed to update User."});
     }
 }
 
