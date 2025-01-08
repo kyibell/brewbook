@@ -12,11 +12,11 @@ export const getAllUsers = async (req, res) => {
 
 export const getUserById = async (req, res) => {
     try {
-        let id = req.params.user_id;
-        let user = await db.User.findbyPk(id);
+        const { id } = req.params;
+        let user = await db.User.findByPk(id);
 
         if (!user) {
-            return res.status(400).json({message: "No user found."});
+            return res.status(404).json({message: "No user found."});
         }
         else {
             return res.status(200).json({
