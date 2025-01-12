@@ -59,9 +59,20 @@ export const updateUser = async (req, res) => {
 
 export const deleteUser = async(req, res) => {
      try {
-         await User.destroy(req.body, {where: { user_id: req.params.id }});
-         res.status(202).send();
+        const { id } = req.params;
+        let user = await db.User.findByPk(id);
+
+        if (!user) {
+            return res.status(404).json({
+                status: "fail",
+                message: "User not found with given id."
+            });
+        }
+
+         await user.destroy(req.body, {where: { user_id: req.params.id }});
+         res.status(200).send(); // send
      } catch(error) {
-        res.status(500).json({error: "Failed to delete User."});
+        console.log(error);
+        res.status(500).json({error: "Internal server error, Failed to delete User."});
      }
 };

@@ -15,7 +15,7 @@ export default (sequelize, DataTypes) => {
       User.hasMany(models.Coffee_Recipes, {
         foreignKey: 'user_id',
         as: 'recipes',
-        onDelete: 'CASCADE',
+        onDelete: 'CASCADE', //  Updated in Supabase to change to Cascade
       });
       User.hasMany(models.Comment, {
         foreignKey: 'user_id',
@@ -52,9 +52,6 @@ export default (sequelize, DataTypes) => {
     password: { 
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [6,23]
-      }
     },
     profile_picture_url: { 
      type: DataTypes.STRING,

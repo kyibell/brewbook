@@ -1,16 +1,26 @@
-import User from '../models/users.js'; // Import User Model
+import db from '../models/index.js'; // Import User Model
 import jwt from 'jsonwebtoken'; // JWT
+import * as dotenv from 'dotenv';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import bcrypt from 'bcrypt';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+dotenv.config({path: `${__dirname}/../../.env`});
 
 const MIN_PASSWORD_LENGTH = 8;
 const emailregex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/ // Email regex for valid email format
+
 
 export async function signup(req, res) {
     try {
         if (!process.env.JWT_SECRET)  { 
             return res.status(400).json({ message: "no JWT Secret! "});
         }
-        
-        const existingUser = await User.findOne({ where: { email: req.body.email }});
+
+        const existingUser = await db.User.findOne({ where: { email: req.body.email }});
         if (existingUser) { // If a user with the email exists
             return res.status(400).json({message: "Account with email already exists! Please try a new email."});
         } 
@@ -26,21 +36,22 @@ export async function signup(req, res) {
                 status: "FAILED",
                 message: "Password is too short, please enter a longer password."
             });
-        } else if (emailregex.test(email)) { // Check for valid email format
+        } else if (!emailregex.test(email)) { // Check for valid email format
             return res.status(400).json({
                 status: "FAILED",
                 message: "Invalid email format entered! Please enter a valid email."
             });
         } else {
             const saltRounds = 10;
-            const hashedPassword = bcrypt.hash(password, saltRounds);
+            const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-            const newUser = await User.create({
+            const newUser = await db.User.create({
                 username,
                 email,
                 password: hashedPassword
             })
         }
+        console.log("User created sucessfully.");
        // await newUser.save();
         const token = createJWT(newUser); // Create a token for the new user
         res.status(200).json({ token });
@@ -59,10 +70,10 @@ export async function signup(req, res) {
 
 export async function login(req, res) {
     try {
-        if(!process.env.SECRET) {
+        if(!process.env.JWT_SECRET) {
             throw new Error("No SECRET in backend env!");
         }
-        const user = await User.findOne({ where: { email: req.body.email }}); // Find the User 
+        const user = await db.User.findOne({ where: { email: req.body.email }}); // Find the User 
         const { email, password } = req.body;
 
         if (!email || !password) {
@@ -74,7 +85,7 @@ export async function login(req, res) {
         }
 
         const hashedPassword = req.body.password;
-        const isMatch = await bcrypt.compare(password, hashedPassword);
+        const isMatch = await user.comparePassword(password);
 
         if (!isMatch) {
             return res.status(400).json({ message: "Invalid Password Entered."});

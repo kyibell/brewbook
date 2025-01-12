@@ -12,7 +12,7 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, pr
     dialect: 'postgres',
     host: process.env.DB_HOST, // Host parameter
     port: process.env.DB_PORT, // Port Parameter
-    logging: false, // Turn off logging for errors
+    logging: true, // logging for errors
     dialectOptions: {
         ssl: {
             require: true, // SSL required for Supabase

@@ -24,51 +24,51 @@ export default (sequelize, DataTypes) => {
   }
   Coffee_Recipes.init({
     recipe_id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true
     },
 
     name: { 
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false
     
     },
 
     ingredients: { 
-      type: Sequelize.TEXT,
+      type: DataTypes.TEXT,
       allowNull: false
     },
 
     instructions: { 
-      type: Sequelize.TEXT,
+      type: DataTypes.TEXT,
       allowNull: false
     },
 
     imageUrl: { 
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: true
     },
 
     coffeeTags: {
-      type: Sequelize.ARRAY(Sequelize.STRING),
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: true
     },
     servings: { 
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     prepTime: { 
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
     },
     rating: { 
-      type: Sequelize.FLOAT,
+      type: DataTypes.FLOAT,
       allowNull: false,
       defaultValue: 0
     },
     author_id:{ 
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'User',
@@ -76,11 +76,11 @@ export default (sequelize, DataTypes) => {
       }
     },
     createdAt: {
-      type: Sequelize.DATE,
-      defaultValue: Sequelize.NOW 
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW 
     },
     updatedAt:{
-      type: Sequelize.DATE,
+      type: DataTypes.DATE,
       defaultValue: Sequelize.NOW
     }
   }, {

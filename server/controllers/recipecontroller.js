@@ -16,8 +16,9 @@ export const createRecipe = async (req, res) => {
         const {name, ingredients, servings} = req.body;
 
         if (!name || !ingredients || !servings) {
-            return res.status(200).json({ message: "Please enter all fields"});
+            return res.status(200).json({ message: "Please enter all required fields"});
         }
+        
         
         
     } catch (error) {
